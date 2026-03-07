@@ -1,1 +1,202 @@
-# character-api
+# Character API
+Overview
+
+This project is a RESTful API built using Spring Boot, Spring Data JPA, and PostgreSQL.
+
+The purpose of this API is to manage characters for a website. The API allows users to create, read, update, delete, search, and filter characters stored in the database.
+
+Each character contains the following fields:
+
+characterId (auto-generated)
+
+name
+
+description
+
+universe
+
+species
+
+For the category requirement in this project, the universe field is used as the category.
+
+## Technology Stack
+
+Java
+
+Spring Boot
+
+Spring Data JPA
+
+Hibernate
+
+PostgreSQL (Neon.tech)
+
+Maven
+
+## Installation
+
+Clone the repository
+
+git clone https://github.com/KERATO-1/character-api.git
+
+Go into the project folder
+
+cd character-api
+
+Configure the database connection
+
+Edit this file:
+
+src/main/resources/application.properties
+
+Add your PostgreSQL connection information:
+
+spring.datasource.url=jdbc:postgresql://HOST:5432/neondb
+spring.datasource.username=USERNAME
+spring.datasource.password=PASSWORD
+spring.jpa.hibernate.ddl-auto=update
+
+Run the application
+
+./mvnw spring-boot:run
+
+The API will start at:
+
+http://localhost:8080
+API Endpoints
+Get All Characters
+
+Returns all characters in the database.
+
+GET /characters
+
+Example:
+
+http://localhost:8080/characters
+Get Character by ID
+
+Returns a specific character using its ID.
+
+GET /characters/{id}
+
+Example:
+
+http://localhost:8080/characters/1
+Create a Character
+
+Adds a new character to the database.
+
+POST /characters
+
+Example request body:
+
+{
+  "name": "Naruto Uzumaki",
+  "description": "A ninja who wants to become Hokage.",
+  "universe": "Naruto",
+  "species": "Human"
+}
+
+Example response:
+
+{
+  "characterId": 1,
+  "name": "Naruto Uzumaki",
+  "description": "A ninja who wants to become Hokage.",
+  "universe": "Naruto",
+  "species": "Human"
+}
+Update a Character
+
+Updates an existing character.
+
+PUT /characters/{id}
+
+Example request body:
+
+{
+  "name": "Naruto Uzumaki",
+  "description": "Future Hokage",
+  "universe": "Naruto",
+  "species": "Human"
+}
+Delete a Character
+
+Deletes a character from the database.
+
+DELETE /characters/{id}
+
+Example:
+
+http://localhost:8080/characters/1
+Get Characters by Category
+
+Returns characters based on universe.
+
+GET /characters/category/{universe}
+
+Example:
+
+http://localhost:8080/characters/category/Naruto
+Search Characters by Name
+
+Returns characters whose names contain a substring.
+
+GET /characters/search?name=substring
+
+Example:
+
+http://localhost:8080/characters/search?name=Nar
+Error Handling
+Invalid ID
+
+If an ID does not exist, the API returns 404 Not Found.
+
+Example:
+
+GET http://localhost:8080/characters/999
+
+Response:
+
+404 Not Found
+Missing Required Fields
+
+If required fields are missing, the API returns 400 Bad Request.
+
+Example request:
+
+{
+  "name": "Bad Character"
+}
+
+Response:
+
+400 Bad Request
+Testing
+
+The API was tested using Bruno.
+
+Tests performed:
+
+Create character (POST)
+
+Get all characters (GET)
+
+Get character by ID (GET)
+
+Update character (PUT)
+
+Delete character (DELETE)
+
+Category filtering
+
+Name search
+
+Error handling (400 and 404 responses)
+
+## Demo Video
+
+A demo video showing the API being tested using Bruno is included.
+
+Demo Video Link:
+https://uncg-my.sharepoint.com/:v:/g/personal/gnhassan_uncg_edu/IQAL6ofHw7zKQ71byDcaci3tAW1GhvxssbZFAwH_mudUUXs?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=dsthHx
