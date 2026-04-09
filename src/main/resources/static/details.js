@@ -18,6 +18,7 @@ async function loadCharacterDetails() {
 
     container.innerHTML = `
       <h1>${character.name}</h1>
+      <img src="/naruto.jpg" width="200">
       <p>${character.description}</p>
       <p><strong>Universe:</strong> ${character.universe}</p>
       <p><strong>Species:</strong> ${character.species}</p>
